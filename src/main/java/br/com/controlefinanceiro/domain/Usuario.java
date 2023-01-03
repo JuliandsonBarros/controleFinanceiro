@@ -29,25 +29,67 @@ public class Usuario implements Serializable {
 		this.nom_email = nom_email;
 	}
 
+	
+	
 	public Integer getId_usuario() {
 		return id_usuario;
 	}
+
+
+
+	public void setId_usuario(Integer id_usuario) {
+		this.id_usuario = id_usuario;
+	}
+
+
 
 	public String getNom_usuario() {
 		return nom_usuario;
 	}
 
+
+
+	public void setNom_usuario(String nom_usuario) {
+		this.nom_usuario = nom_usuario;
+	}
+
+
+
 	public String getCod_cpf() {
 		return cod_cpf;
 	}
+
+
+
+	public void setCod_cpf(String cod_cpf) {
+		this.cod_cpf = cod_cpf;
+	}
+
+
 
 	public String getCod_telefone() {
 		return cod_telefone;
 	}
 
+
+
+	public void setCod_telefone(String cod_telefone) {
+		this.cod_telefone = cod_telefone;
+	}
+
+
+
 	public String getNom_email() {
 		return nom_email;
 	}
+
+
+
+	public void setNom_email(String nom_email) {
+		this.nom_email = nom_email;
+	}
+
+
 
 	@Override
 	public int hashCode() {
