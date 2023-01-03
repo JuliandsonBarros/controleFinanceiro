@@ -1,5 +1,11 @@
 package br.com.controlefinanceiro.service;
 
-public interface UsuarioService {
+import java.util.List;
 
+import br.com.controlefinanceiro.domain.Usuario;
+
+public interface UsuarioService{
+	
+	public List<Usuario> findAll();
+	
 }
