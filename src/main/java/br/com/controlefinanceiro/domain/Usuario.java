@@ -20,6 +20,10 @@ public class Usuario implements Serializable {
 	private String cod_telefone;
 	private String nom_email;
 	
+	public Usuario() {
+		super();
+	}
+
 	public Usuario(Integer id_usuario, String nom_usuario, String cod_cpf, String cod_telefone, String nom_email) {
 		super();
 		this.id_usuario = id_usuario;

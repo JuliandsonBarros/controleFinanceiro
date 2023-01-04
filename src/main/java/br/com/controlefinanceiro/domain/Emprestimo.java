@@ -22,6 +22,10 @@ public class Emprestimo implements Serializable{
 	private LocalDate dta_emprestimo;
 	private Usuario usuario;
 	
+	public Emprestimo() {
+		super();
+	}
+
 	public Emprestimo(Integer id_usuario, Double cod_valor, Integer cod_numeroParcelas, Double cod_taxaJuros,
 			LocalDate dta_emprestimo,Usuario usuario) {
 		super();
