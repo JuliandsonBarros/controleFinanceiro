@@ -28,6 +28,8 @@ public class ControleFinanceiroApplication implements CommandLineRunner {
 		Usuario u2 = new Usuario(null, "Felipe Xavier", "01384935100", "61992850840", "123456");
 		Usuario u3 = new Usuario(null, "Eduarda Leão", "01384935100", "61992850840", "123456");
 		
+		
+		
 
 
 		usuarioRepository.saveAll(Arrays.asList(u1,u2,u3));
