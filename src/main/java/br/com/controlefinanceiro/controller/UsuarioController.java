@@ -3,8 +3,6 @@ package br.com.controlefinanceiro.controller;
 import java.net.URI;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.controlefinanceiro.domain.Usuario;
+import br.com.controlefinanceiro.dto.UsuarioDTO;
 import br.com.controlefinanceiro.service.UsuarioService;
 
 @RestController
@@ -37,18 +36,27 @@ public class UsuarioController {
 	}
 	
 	@RequestMapping(method =RequestMethod.POST)
-	public ResponseEntity<Void> insert(@RequestBody Usuario usuario){
-		Usuario usuarioSalvo = service.insert(usuario);
+	public ResponseEntity<Void> insert(@RequestBody UsuarioDTO usuarioDTO, @PathVariable Integer id){
+		Usuario usuarioSalvo = service.fromDTO(usuarioDTO);
+		usuarioSalvo.setId_usuario(id);
+		usuarioSalvo = service.insert(usuarioSalvo);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(usuarioSalvo.getId_usuario()).toUri();
         return ResponseEntity.created(uri).build();
     }
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> update(@RequestBody Usuario usuario, @PathVariable Integer id) {
-		usuario.setId_usuario(id);
-		service.update(usuario);
+	public ResponseEntity<Void> update(@RequestBody UsuarioDTO usuarioDTO, @PathVariable Integer id) {
+		Usuario usuarioSalvo = service.fromDTO(usuarioDTO);
+		usuarioSalvo.setId_usuario(id);
+		usuarioSalvo = service.update(usuarioSalvo);
 		return ResponseEntity.noContent().build();
 	}
+	
+	 @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	    public ResponseEntity<Void> delete(@PathVariable  Integer id){
+	        service.delete(id);
+	        return ResponseEntity.noContent().build();
+	    }
 	
 }
