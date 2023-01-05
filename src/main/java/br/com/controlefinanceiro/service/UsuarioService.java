@@ -13,5 +13,7 @@ public interface UsuarioService {
 	public Usuario insert(Usuario obj);
 
 	public Usuario update(Usuario usuario);
+	
+	public void delete(Integer id);
 
 }

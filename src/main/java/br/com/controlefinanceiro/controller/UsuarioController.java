@@ -3,8 +3,6 @@ package br.com.controlefinanceiro.controller;
 import java.net.URI;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -48,6 +46,12 @@ public class UsuarioController {
 	public ResponseEntity<Void> update(@RequestBody Usuario usuario, @PathVariable Integer id) {
 		usuario.setId_usuario(id);
 		service.update(usuario);
+		return ResponseEntity.noContent().build();
+	}
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Void> delete(@PathVariable Integer id){
+		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
 	
