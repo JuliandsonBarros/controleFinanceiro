@@ -5,7 +5,9 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import br.com.controlefinanceiro.domain.Usuario;
+import br.com.controlefinanceiro.dto.UsuarioDTO;
 import br.com.controlefinanceiro.repository.UsuarioRepository;
 import br.com.controlefinanceiro.service.UsuarioService;
 
@@ -45,5 +47,10 @@ public class UsuarioServiceImpl implements UsuarioService {
 		novoUsuario.setCod_telefone(usuario.getCod_telefone());
 		novoUsuario.setNom_email(usuario.getNom_email());
 
+	}
+
+	public Usuario fromDTO(UsuarioDTO dto) {
+		return new Usuario(dto.getId_usuarioDTO(),dto.getNom_usuario() ,dto.getCod_cpf(), 
+				dto.getCod_telefone(),dto.getNom_email());
 	}
 }
