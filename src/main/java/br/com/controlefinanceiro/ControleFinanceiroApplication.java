@@ -32,14 +32,15 @@ public class ControleFinanceiroApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		
 
-		Usuario u1 = new Usuario(null, "Juliandson Barros Soares", "01384935100", "61992850840", "123456",Perfis.RESPONSAVEL);
-		Usuario u2 = new Usuario(null, "Felipe Xavier", "01384935100", "61992850840", "123456",Perfis.ADMIN);
-		Usuario u3 = new Usuario(null, "Eduarda Leão", "01384935100", "61992850840", "123456", Perfis.ADMIN);
+		Usuario u1 = new Usuario(null, "Juliandson Barros Soares", "01384935100", "61992850840", "123456",Perfis.ADMIN);
+		
+		Usuario u2 = new Usuario(null, "Felipe Xavier", "01384935100", "61992850840", "123456");
+		Usuario u3 = new Usuario(null, "Eduarda Leão", "01384935100", "61992850840", "123456");
 		
 		usuarioRepository.saveAll(Arrays.asList(u1,u2,u3));
 		
 		Emprestimo e1 = new Emprestimo(null, 10.00,1, 15, LocalDate.now(),u1,Status.ABERTO);
-		Emprestimo e2 = new Emprestimo(null, 15.00,1, 10, LocalDate.now(),u3,Status.PAGO);		
+		Emprestimo e2 = new Emprestimo(null, 15.00,1, 10, LocalDate.now(),u2,Status.PAGO);		
 		Emprestimo e3 = new Emprestimo(null, 20.00,1, 12, LocalDate.now(),u2,Status.VENCIDO);
 		
 		repo.saveAll(Arrays.asList(e1,e2,e3));
