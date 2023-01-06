@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import br.com.controlefinanceiro.domain.Emprestimo;
 import br.com.controlefinanceiro.domain.Usuario;
+import br.com.controlefinanceiro.domain.enums.Perfis;
 import br.com.controlefinanceiro.repository.EmprestimoRepository;
 import br.com.controlefinanceiro.repository.UsuarioRepository;
 
@@ -17,10 +18,10 @@ import br.com.controlefinanceiro.repository.UsuarioRepository;
 public class ControleFinanceiroApplication implements CommandLineRunner {
 	
 	@Autowired
-	public UsuarioRepository usuarioRepository;
+	private UsuarioRepository usuarioRepository;
 	
 	@Autowired
-	public EmprestimoRepository repo;
+	private EmprestimoRepository repo;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ControleFinanceiroApplication.class, args);
@@ -30,9 +31,9 @@ public class ControleFinanceiroApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		
 
-		Usuario u1 = new Usuario(null, "Juliandson Barros Soares", "01384935100", "61992850840", "123456");
-		Usuario u2 = new Usuario(null, "Felipe Xavier", "01384935100", "61992850840", "123456");
-		Usuario u3 = new Usuario(null, "Eduarda Leão", "01384935100", "61992850840", "123456");
+		Usuario u1 = new Usuario(null, "Juliandson Barros Soares", "01384935100", "61992850840", "123456",Perfis.RESPONSAVEL);
+		Usuario u2 = new Usuario(null, "Felipe Xavier", "01384935100", "61992850840", "123456",Perfis.ADMIN);
+		Usuario u3 = new Usuario(null, "Eduarda Leão", "01384935100", "61992850840", "123456", Perfis.ADMIN);
 		
 		usuarioRepository.saveAll(Arrays.asList(u1,u2,u3));
 		
