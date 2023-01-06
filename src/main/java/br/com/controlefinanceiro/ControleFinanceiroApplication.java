@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import br.com.controlefinanceiro.domain.Emprestimo;
 import br.com.controlefinanceiro.domain.Usuario;
 import br.com.controlefinanceiro.domain.enums.Perfis;
+import br.com.controlefinanceiro.domain.enums.Status;
 import br.com.controlefinanceiro.repository.EmprestimoRepository;
 import br.com.controlefinanceiro.repository.UsuarioRepository;
 
@@ -37,9 +38,9 @@ public class ControleFinanceiroApplication implements CommandLineRunner {
 		
 		usuarioRepository.saveAll(Arrays.asList(u1,u2,u3));
 		
-		Emprestimo e1 = new Emprestimo(null, 10.00,1, 15, LocalDate.now());
-		Emprestimo e2 = new Emprestimo(null, 15.00,1, 10, LocalDate.now());		
-		Emprestimo e3 = new Emprestimo(null, 20.00,1, 12, LocalDate.now());
+		Emprestimo e1 = new Emprestimo(null, 10.00,1, 15, LocalDate.now(),u1,Status.ABERTO);
+		Emprestimo e2 = new Emprestimo(null, 15.00,1, 10, LocalDate.now(),u3,Status.PAGO);		
+		Emprestimo e3 = new Emprestimo(null, 20.00,1, 12, LocalDate.now(),u2,Status.VENCIDO);
 		
 		repo.saveAll(Arrays.asList(e1,e2,e3));
 		

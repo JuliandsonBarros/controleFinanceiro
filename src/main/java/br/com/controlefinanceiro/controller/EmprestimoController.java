@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.controlefinanceiro.domain.Emprestimo;
-import br.com.controlefinanceiro.seviceImpl.EmprestimoServiceImpl;
+import br.com.controlefinanceiro.service.EmprestimoService;
 
 @RestController
 @RequestMapping("/emprestimo")
 public class EmprestimoController {
 
 	@Autowired
-	private EmprestimoServiceImpl service;
+	private EmprestimoService service;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Emprestimo>> findAll() {

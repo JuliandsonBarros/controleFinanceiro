@@ -2,12 +2,22 @@ package br.com.controlefinanceiro.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import br.com.controlefinanceiro.domain.enums.Status;
 
 @Entity
 public class Emprestimo implements Serializable{
@@ -20,20 +30,38 @@ public class Emprestimo implements Serializable{
 	private Integer cod_numeroParcelas;
 	private Integer cod_taxaJuros;
 	private LocalDate dta_emprestimo;
+	
+	@ManyToOne
 	private Usuario usuario;
+	private Integer sta;
+	
+	@ElementCollection(fetch = FetchType.EAGER)
+	@CollectionTable(name = "Status")
+	private Set<Integer> status = new HashSet<>();
 	
 	public Emprestimo() {
 		super();
 	}
 
 	public Emprestimo(Integer id_emprestimo, Double cod_valor, Integer cod_numeroParcelas, Integer cod_taxaJuros,
-			LocalDate dta_emprestimo) {
+			LocalDate dta_emprestimo,Usuario usuario ,Status status) {
 		super();
 		this.id_emprestimo = id_emprestimo;
 		this.cod_valor = cod_valor;
 		this.cod_numeroParcelas = cod_numeroParcelas;
 		this.cod_taxaJuros = cod_taxaJuros;
 		this.dta_emprestimo = dta_emprestimo;
+		this.usuario = usuario;
+		this.sta = status.getCod();
+		addStatus(status);
+	}
+	
+	public void addStatus(Status status) {
+		this.status.add(status.getCod());
+	}
+	
+	public Set<Status> getStatus(){
+		return status.stream().map(x -> Status.ABERTO).collect(Collectors.toSet());
 	}
 	
 	public Integer getId_emprestimo() {
@@ -82,6 +110,14 @@ public class Emprestimo implements Serializable{
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+	
+	public Status getSta() {
+		return Status.toEnum(sta);
+	}
+	
+	public void setSta(Status status) {
+		this.sta = status.getCod();
 	}
 
 	@Override
