@@ -3,6 +3,7 @@ package br.com.controlefinanceiro.dto;
 import java.io.Serializable;
 
 import br.com.controlefinanceiro.domain.Usuario;
+import br.com.controlefinanceiro.domain.enums.Perfis;
 
 public class UsuarioDTO implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -12,6 +13,7 @@ public class UsuarioDTO implements Serializable {
 	private String cod_cpf;
 	private String cod_telefone;
 	private String nom_email;
+	private Perfis perfil;
 	
 	public UsuarioDTO() {
 		super();
@@ -23,6 +25,7 @@ public class UsuarioDTO implements Serializable {
 		cod_cpf = usuario.getCod_cpf();
 		cod_telefone = usuario.getCod_telefone();
 		nom_email = usuario.getNom_email();
+		perfil = usuario.getPerfil();
 	}
 
 	public Integer getId_usuarioDTO() {
@@ -63,5 +66,13 @@ public class UsuarioDTO implements Serializable {
 
 	public void setNom_email(String nom_email) {
 		this.nom_email = nom_email;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public Perfis getPerfil() {
+		return perfil;
 	}
 }

@@ -51,6 +51,6 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	public Usuario fromDTO(UsuarioDTO dto) {
 		return new Usuario(dto.getId_usuarioDTO(),dto.getNom_usuario() ,dto.getCod_cpf(), 
-				dto.getCod_telefone(),dto.getNom_email());
+				dto.getCod_telefone(),dto.getNom_email(), dto.getPerfil());
 	}
 }
