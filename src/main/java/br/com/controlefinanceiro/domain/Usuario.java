@@ -1,19 +1,20 @@
 package br.com.controlefinanceiro.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import br.com.controlefinanceiro.domain.enums.Perfis;
 
@@ -28,33 +29,44 @@ public class Usuario implements Serializable {
 	private String cod_cpf;
 	private String cod_telefone;
 	private String nom_email;
-	private Integer per;
+	private Integer perfil;
 
 	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable(name = "Perfis")
 	private Set<Integer> perfis = new HashSet<>();
+	
+	@OneToMany
+	private List<Emprestimo> emprestimo = new ArrayList<>();
 
 	public Usuario() {
 		
 	}
-
-	public Usuario(Integer id_usuario, String nom_usuario, String cod_cpf, String cod_telefone, String nom_email, Perfis perfil) {
+	
+	public Usuario(Integer id_usuario, String nom_usuario, String cod_cpf, String cod_telefone, String nom_email) {
 		super();
 		this.id_usuario = id_usuario;
 		this.nom_usuario = nom_usuario;
 		this.cod_cpf = cod_cpf;
 		this.cod_telefone = cod_telefone;
 		this.nom_email = nom_email;
-		this.per = perfil.getCod();
-		addPerfil(perfil);
 	}
+
+	public Usuario(Integer id_usuario, String nom_usuario, String cod_cpf, String cod_telefone, 
+			String nom_email, Perfis per) {
+		super();
+		this.id_usuario = id_usuario;
+		this.nom_usuario = nom_usuario;
+		this.cod_cpf = cod_cpf;
+		this.cod_telefone = cod_telefone;
+		this.nom_email = nom_email;
+		this.perfil = per.getCod();
+		addPerfil(per);
+	}
+	
+	
 
 	public void addPerfil(Perfis perfis) {
 		this.perfis.add(perfis.getCod());
-	}
-	
-	public Set<Perfis> getPerfis(){
-		return perfis.stream().map(x -> Perfis.ADMIN).collect(Collectors.toSet());
 	}
 
 	public Integer getId_usuario() {
@@ -99,11 +111,11 @@ public class Usuario implements Serializable {
 	
 	
 	public Perfis getPerfil() {
-		return Perfis.toEnum(per);
+		return Perfis.toEnum(perfil);
 	}
 
 	public void setPerfil(Perfis perfil) {
-		this.per = perfil.getCod();
+		this.perfil = perfil.getCod();
 	}
 
 	@Override
