@@ -5,8 +5,6 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
@@ -15,6 +13,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import br.com.controlefinanceiro.domain.enums.Status;
@@ -33,11 +32,13 @@ public class Emprestimo implements Serializable{
 	
 	@ManyToOne
 	private Usuario usuario;
-	private Integer sta;
+	
+	@JoinColumn(name = "status")
+	private Integer status;
 	
 	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable(name = "Status")
-	private Set<Integer> status = new HashSet<>();
+	private Set<Integer> sta = new HashSet<>();
 	
 	public Emprestimo() {
 		super();
@@ -52,17 +53,14 @@ public class Emprestimo implements Serializable{
 		this.cod_taxaJuros = cod_taxaJuros;
 		this.dta_emprestimo = dta_emprestimo;
 		this.usuario = usuario;
-		this.sta = status.getCod();
+		this.status = status.getCod();
 		addStatus(status);
 	}
 	
 	public void addStatus(Status status) {
-		this.status.add(status.getCod());
+		this.sta.add(status.getCod());
 	}
 	
-	public Set<Status> getStatus(){
-		return status.stream().map(x -> Status.ABERTO).collect(Collectors.toSet());
-	}
 	
 	public Integer getId_emprestimo() {
 		return id_emprestimo;
@@ -113,11 +111,11 @@ public class Emprestimo implements Serializable{
 	}
 	
 	public Status getSta() {
-		return Status.toEnum(sta);
+		return Status.toEnum(status);
 	}
 	
 	public void setSta(Status status) {
-		this.sta = status.getCod();
+		this.status = status.getCod();
 	}
 
 	@Override
