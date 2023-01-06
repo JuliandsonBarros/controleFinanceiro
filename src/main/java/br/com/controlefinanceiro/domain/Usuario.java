@@ -28,14 +28,14 @@ public class Usuario implements Serializable {
 	private String cod_cpf;
 	private String cod_telefone;
 	private String nom_email;
-	private Integer perfil;
+	private Integer per;
 
 	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable(name = "Perfis")
 	private Set<Integer> perfis = new HashSet<>();
 
 	public Usuario() {
-		addPerfil(Perfis.RESPONSAVEL);
+		
 	}
 
 	public Usuario(Integer id_usuario, String nom_usuario, String cod_cpf, String cod_telefone, String nom_email, Perfis perfil) {
@@ -45,8 +45,8 @@ public class Usuario implements Serializable {
 		this.cod_cpf = cod_cpf;
 		this.cod_telefone = cod_telefone;
 		this.nom_email = nom_email;
-		this.perfil = perfil.getCod();
-		addPerfil(Perfis.RESPONSAVEL);
+		this.per = perfil.getCod();
+		addPerfil(perfil);
 	}
 
 	public void addPerfil(Perfis perfis) {
@@ -99,11 +99,11 @@ public class Usuario implements Serializable {
 	
 	
 	public Perfis getPerfil() {
-		return Perfis.toEnum(perfil);
+		return Perfis.toEnum(per);
 	}
 
 	public void setPerfil(Perfis perfil) {
-		this.perfil = perfil.getCod();
+		this.per = perfil.getCod();
 	}
 
 	@Override

@@ -3,9 +3,9 @@ package br.com.controlefinanceiro.domain.enums;
 public enum Perfis {
 
     RESPONSAVEL(1,"ROLE_RESPONSAVEL"),
-    ADMIN(2,"ROLE_ADMIN");
+    ADMIN(2, "ROLE_ADMIN");
 
-    private Integer cod;
+    private Integer cod; 
     private String descriao;
 
     Perfis(Integer cod, String descriao) {
