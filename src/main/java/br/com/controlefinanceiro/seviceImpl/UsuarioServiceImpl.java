@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import br.com.controlefinanceiro.domain.Usuario;
 import br.com.controlefinanceiro.dto.UsuarioDTO;
@@ -29,7 +31,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 	public Usuario insert(Usuario obj) {
 		return repo.save(obj);
 	}
-
+	
 	public Usuario update(Usuario usuario) {
 		Usuario novoUsuario = findId(usuario.getId_usuario());
 		AtualizaBanco(novoUsuario, usuario);
@@ -38,7 +40,12 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 	
 	public void delete(Integer id) {
-		repo.deleteById(id);
+		repo.findById(id)
+		.map(usuario -> {
+			repo.delete(usuario);
+			return Void.TYPE;
+		})
+		.orElseThrow(() -> new  ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado"));
 	}
 
 	private void AtualizaBanco(Usuario novoUsuario, Usuario usuario) {
@@ -51,6 +58,6 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	public Usuario fromDTO(UsuarioDTO dto) {
 		return new Usuario(dto.getId_usuarioDTO(),dto.getNom_usuario() ,dto.getCod_cpf(), 
-				dto.getCod_telefone(),dto.getNom_email(), dto.getPerfil());
+				dto.getCod_telefone(),dto.getNom_email());
 	}
 }

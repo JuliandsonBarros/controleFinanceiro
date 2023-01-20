@@ -2,18 +2,27 @@ package br.com.controlefinanceiro.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.br.CPF;
+
 import br.com.controlefinanceiro.domain.Usuario;
-import br.com.controlefinanceiro.domain.enums.Perfis;
 
 public class UsuarioDTO implements Serializable {
     private static final long serialVersionUID = 1L;
     
     private Integer id_usuarioDTO;
+    
+    @NotEmpty(message = "{campo.nome.obrigatorio}")
     private String nom_usuario;
+    
+    
+    @NotNull(message = "{campo.cpf.obrigatorio}")
+    @CPF(message = "{campo.cpf.invalido}")
 	private String cod_cpf;
 	private String cod_telefone;
 	private String nom_email;
-	private Perfis perfil;
 	
 	public UsuarioDTO() {
 		super();
@@ -25,7 +34,6 @@ public class UsuarioDTO implements Serializable {
 		cod_cpf = usuario.getCod_cpf();
 		cod_telefone = usuario.getCod_telefone();
 		nom_email = usuario.getNom_email();
-		perfil = usuario.getPerfil();
 	}
 
 	public Integer getId_usuarioDTO() {
@@ -70,9 +78,5 @@ public class UsuarioDTO implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
-	}
-
-	public Perfis getPerfil() {
-		return perfil;
 	}
 }
