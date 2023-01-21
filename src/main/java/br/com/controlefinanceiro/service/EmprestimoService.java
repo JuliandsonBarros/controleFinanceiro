@@ -4,6 +4,7 @@ import java.util.List;
 
 import br.com.controlefinanceiro.domain.Emprestimo;
 import br.com.controlefinanceiro.dto.EmprestimoDTO;
+import br.com.controlefinanceiro.dto.EmprestimoNewDTO;
 
 public interface EmprestimoService {
 
@@ -18,4 +19,6 @@ public interface EmprestimoService {
 	public void delete(Integer id);
 	
 	public Emprestimo fromDto(EmprestimoDTO dto);
+	
+	public Emprestimo fromNewDTO(EmprestimoNewDTO dto);
 }

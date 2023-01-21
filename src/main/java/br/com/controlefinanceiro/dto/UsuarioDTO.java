@@ -74,8 +74,4 @@ public class UsuarioDTO implements Serializable {
 	public void setNom_email(String nom_email) {
 		this.nom_email = nom_email;
 	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 }

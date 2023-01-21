@@ -18,7 +18,4 @@ public interface UsuarioService {
 	public void delete(Integer id);
 	
 	public Usuario fromDTO(UsuarioDTO dto);
-	
-	public Usuario fromDTO(Usuario dto);
-
 }
