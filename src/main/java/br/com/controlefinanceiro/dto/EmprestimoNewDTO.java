@@ -1,26 +1,26 @@
 package br.com.controlefinanceiro.dto;
 
-import br.com.controlefinanceiro.domain.Emprestimo;
-import br.com.controlefinanceiro.domain.Usuario;
+import java.io.Serializable;
 
-public class EmprestimoDTO {
+public class EmprestimoNewDTO implements Serializable{
+	private static final long serialVersionUID = 1L;
 	
 	private Integer id_emprestimo;
 	private Double cod_valor;
 	private Integer cod_taxaJuros;
 	//private LocalDate dta_emprestimo;
 	
-	private Usuario usuario;
+	private UsuarioDTO usuario;
 	
-	public EmprestimoDTO() {
+	public EmprestimoNewDTO(Integer id_emprestimo, Double cod_valor, Integer cod_taxaJuros,UsuarioDTO usuario) {
+		super();
+		this.id_emprestimo = id_emprestimo;
+		this.cod_valor = cod_valor;
+		this.cod_taxaJuros = cod_taxaJuros;
+		this.usuario = usuario;
 	}
 
-	public EmprestimoDTO(Emprestimo emprestimo) {
-		id_emprestimo = emprestimo.getId_emprestimo();
-		cod_valor = emprestimo.getCod_valor();
-		cod_taxaJuros = emprestimo.getCod_taxaJuros();
-		usuario = emprestimo.getUsuario();
-	}
+
 
 	public Integer getId_emprestimo() {
 		return id_emprestimo;
@@ -46,11 +46,19 @@ public class EmprestimoDTO {
 		this.cod_taxaJuros = cod_taxaJuros;
 	}
 
-	public Usuario getUsuario() {
+	//public LocalDate getDta_emprestimo() {
+	//	return dta_emprestimo;
+	//}
+
+	//public void setDta_emprestimo(LocalDate dta_emprestimo) {
+	//	this.dta_emprestimo = dta_emprestimo;
+	//}
+
+	public UsuarioDTO getUsuario() {
 		return usuario;
 	}
 
-	public void setUsuario(Usuario usuario) {
+	public void setUsuario(UsuarioDTO usuario) {
 		this.usuario = usuario;
 	}
 }

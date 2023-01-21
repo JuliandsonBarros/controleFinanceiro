@@ -28,7 +28,7 @@ public class Emprestimo implements Serializable{
 	private Double cod_valor;
 	private Integer cod_numeroParcelas;
 	private Integer cod_taxaJuros;
-	private LocalDate dta_emprestimo;
+	//private LocalDate dta_emprestimo;
 	
 	@ManyToOne
 	private Usuario usuario;
@@ -43,8 +43,8 @@ public class Emprestimo implements Serializable{
 	public Emprestimo() {
 	}
 	
-	public Emprestimo(Integer id_emprestimo, Double cod_valor, Integer cod_taxaJuros
-			,Usuario usuario) {
+	public Emprestimo(Integer id_emprestimo, Double cod_valor, Integer cod_taxaJuros,Usuario usuario
+			) {
 		this.id_emprestimo = id_emprestimo;
 		this.cod_valor = cod_valor;
 		this.cod_taxaJuros = cod_taxaJuros;
@@ -58,7 +58,7 @@ public class Emprestimo implements Serializable{
 		this.cod_valor = cod_valor;
 		this.cod_numeroParcelas = cod_numeroParcelas;
 		this.cod_taxaJuros = cod_taxaJuros;
-		this.dta_emprestimo = dta_emprestimo;
+		//this.dta_emprestimo = dta_emprestimo;
 		this.usuario = usuario;
 		this.status = status.getCod();
 		addStatus(status);
@@ -101,13 +101,13 @@ public class Emprestimo implements Serializable{
 		this.cod_taxaJuros = cod_taxaJuros;
 	}
 
-	public LocalDate getDta_emprestimo() {
-		return dta_emprestimo;
-	}
+	//public LocalDate getDta_emprestimo() {
+	//	return dta_emprestimo;
+	//}
 
-	public void setDta_emprestimo(LocalDate dta_emprestimo) {
-		this.dta_emprestimo = dta_emprestimo;
-	}
+	//public void setDta_emprestimo(LocalDate dta_emprestimo) {
+	//	this.dta_emprestimo = dta_emprestimo;
+	//}
 
 	public Usuario getUsuario() {
 		return usuario;

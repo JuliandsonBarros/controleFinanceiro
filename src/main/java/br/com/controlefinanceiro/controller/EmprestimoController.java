@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.controlefinanceiro.domain.Emprestimo;
-import br.com.controlefinanceiro.dto.EmprestimoDTO;
+import br.com.controlefinanceiro.dto.EmprestimoNewDTO;
 import br.com.controlefinanceiro.service.EmprestimoService;
 
 @RestController
@@ -40,8 +40,8 @@ public class EmprestimoController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> insert(@RequestBody EmprestimoDTO emprestimoDTO) {
-		Emprestimo emprestimoSalvo = service.fromDto(emprestimoDTO);
+	public ResponseEntity<Void> insert(@Valid @RequestBody EmprestimoNewDTO emprestimoDTO) {
+		Emprestimo emprestimoSalvo = service.fromNewDTO(emprestimoDTO);
 		emprestimoSalvo = service.insert(emprestimoSalvo);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(emprestimoSalvo.getId_emprestimo()).toUri();
@@ -49,7 +49,7 @@ public class EmprestimoController {
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> update(@RequestBody @Valid Emprestimo emprestimo, @PathVariable Integer id){	
+	public ResponseEntity<Void> update(@Valid @RequestBody Emprestimo emprestimo, @PathVariable Integer id){	
 		emprestimo.setId_emprestimo(id);
 		service.update(emprestimo);
 		return ResponseEntity.noContent().build();
