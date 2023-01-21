@@ -12,6 +12,10 @@ public class EmprestimoNewDTO implements Serializable{
 	
 	private UsuarioDTO usuario;
 	
+	public EmprestimoNewDTO() {
+		
+	}
+	
 	public EmprestimoNewDTO(Integer id_emprestimo, Double cod_valor, Integer cod_taxaJuros,UsuarioDTO usuario) {
 		super();
 		this.id_emprestimo = id_emprestimo;

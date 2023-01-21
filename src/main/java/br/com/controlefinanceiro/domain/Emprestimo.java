@@ -42,9 +42,8 @@ public class Emprestimo implements Serializable{
 	
 	public Emprestimo() {
 	}
-	
-	public Emprestimo(Integer id_emprestimo, Double cod_valor, Integer cod_taxaJuros,Usuario usuario
-			) {
+
+	public Emprestimo(Integer id_emprestimo, Double cod_valor, Integer cod_taxaJuros,Usuario usuario) {
 		this.id_emprestimo = id_emprestimo;
 		this.cod_valor = cod_valor;
 		this.cod_taxaJuros = cod_taxaJuros;
