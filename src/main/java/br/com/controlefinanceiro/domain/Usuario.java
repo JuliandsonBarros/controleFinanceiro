@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CollectionTable;
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -25,7 +26,11 @@ public class Usuario implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id_usuario;
+	
+	@Column(nullable = false, length = 150)
 	private String nom_usuario;
+	
+	@Column(nullable = false, length = 11)
 	private String cod_cpf;
 	private String cod_telefone;
 	private String nom_email;
