@@ -10,6 +10,7 @@ public class EmprestimoDTO implements Serializable{
 	
 	private Integer id_emprestimo;
 	private Double cod_valor;
+	private Integer cod_numeroParcelas;
 	private Integer cod_taxaJuros;
 	//private LocalDate dta_emprestimo;
 	
@@ -22,6 +23,7 @@ public class EmprestimoDTO implements Serializable{
 		id_emprestimo = emprestimo.getId_emprestimo();
 		cod_valor = emprestimo.getCod_valor();
 		cod_taxaJuros = emprestimo.getCod_taxaJuros();
+		cod_numeroParcelas = emprestimo.getCod_numeroParcelas();
 		usuario = emprestimo.getUsuario();
 	}
 
@@ -55,5 +57,13 @@ public class EmprestimoDTO implements Serializable{
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public Integer getCod_numeroParcelas() {
+		return cod_numeroParcelas;
+	}
+
+	public void setCod_numeroParcelas(Integer cod_numeroParcelas) {
+		this.cod_numeroParcelas = cod_numeroParcelas;
 	}
 }
