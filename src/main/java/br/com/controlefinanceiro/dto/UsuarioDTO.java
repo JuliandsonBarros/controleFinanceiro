@@ -12,7 +12,7 @@ import br.com.controlefinanceiro.domain.Usuario;
 public class UsuarioDTO implements Serializable {
     private static final long serialVersionUID = 1L;
     
-    private Integer id_usuarioDTO;
+    private Integer id_usuario;
     
     @NotEmpty(message = "{campo.nome.obrigatorio}")
     private String nom_usuario;
@@ -25,23 +25,22 @@ public class UsuarioDTO implements Serializable {
 	private String nom_email;
 	
 	public UsuarioDTO() {
-		super();
 	}
 
 	public UsuarioDTO(Usuario usuario) {
-		id_usuarioDTO = usuario.getId_usuario();
+		id_usuario = usuario.getId_usuario();
 		nom_usuario = usuario.getNom_usuario();
 		cod_cpf = usuario.getCod_cpf();
 		cod_telefone = usuario.getCod_telefone();
 		nom_email = usuario.getNom_email();
 	}
 
-	public Integer getId_usuarioDTO() {
-		return id_usuarioDTO;
+	public Integer getId_usuario() {
+		return id_usuario;
 	}
 
-	public void setId_usuarioDTO(Integer id_usuarioDTO) {
-		this.id_usuarioDTO = id_usuarioDTO;
+	public void setId_usuarioDTO(Integer id_usuario) {
+		this.id_usuario = id_usuario;
 	}
 
 	public String getNom_usuario() {

@@ -41,7 +41,14 @@ public class Emprestimo implements Serializable{
 	private Set<Integer> sta = new HashSet<>();
 	
 	public Emprestimo() {
-		super();
+	}
+	
+	public Emprestimo(Integer id_emprestimo, Double cod_valor, Integer cod_taxaJuros
+			,Usuario usuario) {
+		this.id_emprestimo = id_emprestimo;
+		this.cod_valor = cod_valor;
+		this.cod_taxaJuros = cod_taxaJuros;
+		this.usuario = usuario;
 	}
 
 	public Emprestimo(Integer id_emprestimo, Double cod_valor, Integer cod_numeroParcelas, Integer cod_taxaJuros,
@@ -116,6 +123,11 @@ public class Emprestimo implements Serializable{
 	
 	public void setSta(Status status) {
 		this.status = status.getCod();
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(id_emprestimo);
 	}
 
 	@Override

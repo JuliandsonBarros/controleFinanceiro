@@ -9,14 +9,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.controlefinanceiro.domain.Emprestimo;
+import br.com.controlefinanceiro.dto.EmprestimoDTO;
 import br.com.controlefinanceiro.repository.EmprestimoRepository;
 import br.com.controlefinanceiro.service.EmprestimoService;
+import br.com.controlefinanceiro.service.UsuarioService;
 
 @Service
 public class EmprestimoServiceImpl implements EmprestimoService {
 
 	@Autowired
 	private EmprestimoRepository repo;
+	
+	private UsuarioService usuarioService;
 
 	public List<Emprestimo> findAll() {
 		return repo.findAll();
@@ -45,6 +49,10 @@ public class EmprestimoServiceImpl implements EmprestimoService {
 	public void delete(Integer id) {
 		repo.deleteById(id);
 	}
+	
+	public Emprestimo fromDto(EmprestimoDTO dto) {
+		return new Emprestimo(null,dto.getCod_valor(),dto.getCod_taxaJuros(),usuarioService.fromDTO(dto.getUsuario()));
+	}
 
 	private void atualizaBanco(Emprestimo emprestimoSalvo, Emprestimo emprestimo) {
 		emprestimoSalvo.setCod_numeroParcelas(emprestimo.getCod_numeroParcelas());
@@ -53,4 +61,7 @@ public class EmprestimoServiceImpl implements EmprestimoService {
 		emprestimoSalvo.setDta_emprestimo(emprestimo.getDta_emprestimo());
 		emprestimoSalvo.setUsuario(emprestimo.getUsuario());
 	}
+	
+	
+	
 }
