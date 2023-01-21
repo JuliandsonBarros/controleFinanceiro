@@ -21,6 +21,7 @@ public class EmprestimoServiceImpl implements EmprestimoService {
 	@Autowired
 	private EmprestimoRepository repo;
 	
+	@Autowired
 	private UsuarioService usuarioService;
 
 	public List<Emprestimo> findAll() {

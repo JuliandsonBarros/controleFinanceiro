@@ -1,9 +1,12 @@
 package br.com.controlefinanceiro.dto;
 
+import java.io.Serializable;
+
 import br.com.controlefinanceiro.domain.Emprestimo;
 import br.com.controlefinanceiro.domain.Usuario;
 
-public class EmprestimoDTO {
+public class EmprestimoDTO implements Serializable{
+	private static final long serialVersionUID = 1L;
 	
 	private Integer id_emprestimo;
 	private Double cod_valor;
