@@ -44,7 +44,6 @@ public class Usuario implements Serializable {
 	private List<Emprestimo> emprestimo = new ArrayList<>();
 
 	public Usuario() {
-		
 	}
 	
 	public Usuario(Integer id_usuario, String nom_usuario, String cod_cpf, String cod_telefone, String nom_email) {

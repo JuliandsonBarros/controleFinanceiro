@@ -57,7 +57,12 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 
 	public Usuario fromDTO(UsuarioDTO dto) {
-		return new Usuario(dto.getId_usuarioDTO(),dto.getNom_usuario() ,dto.getCod_cpf(), 
+		return new Usuario(dto.getId_usuario(),dto.getNom_usuario() ,dto.getCod_cpf(), 
+				dto.getCod_telefone(),dto.getNom_email());
+	}
+	
+	public Usuario fromDTO(Usuario dto) {
+		return new Usuario(dto.getId_usuario(),dto.getNom_usuario() ,dto.getCod_cpf(), 
 				dto.getCod_telefone(),dto.getNom_email());
 	}
 }
