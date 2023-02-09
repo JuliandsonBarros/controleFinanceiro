@@ -20,9 +20,10 @@ public class UsuarioDTO implements Serializable {
     
     @NotNull(message = "{campo.cpf.obrigatorio}")
     @CPF(message = "{campo.cpf.invalido}")
-	private String cod_cpf;
+	private String cpf;
 	private String cod_telefone;
 	private String nom_email;
+	private String cod_senha;
 	
 	public UsuarioDTO() {
 	}
@@ -30,9 +31,10 @@ public class UsuarioDTO implements Serializable {
 	public UsuarioDTO(Usuario usuario) {
 		id_usuario = usuario.getId_usuario();
 		nom_usuario = usuario.getNom_usuario();
-		cod_cpf = usuario.getCod_cpf();
+		cpf = usuario.getCpf();
 		cod_telefone = usuario.getCod_telefone();
 		nom_email = usuario.getNom_email();
+		cod_senha = usuario.getCod_senha();
 	}
 
 	public Integer getId_usuario() {
@@ -51,12 +53,12 @@ public class UsuarioDTO implements Serializable {
 		this.nom_usuario = nom_usuario;
 	}
 
-	public String getCod_cpf() {
-		return cod_cpf;
+	public String getCpf() {
+		return cpf;
 	}
 
-	public void setCod_cpf(String cod_cpf) {
-		this.cod_cpf = cod_cpf;
+	public void setCpf(String cod_cpf) {
+		this.cpf = cod_cpf;
 	}
 
 	public String getCod_telefone() {
@@ -73,5 +75,13 @@ public class UsuarioDTO implements Serializable {
 
 	public void setNom_email(String nom_email) {
 		this.nom_email = nom_email;
+	}
+
+	public String getCod_senha() {
+		return cod_senha;
+	}
+
+	public void setCod_senha(String cod_senha) {
+		this.cod_senha = cod_senha;
 	}
 }
