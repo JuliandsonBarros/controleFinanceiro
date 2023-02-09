@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -16,6 +17,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.controlefinanceiro.domain.enums.Perfis;
 
@@ -31,9 +34,12 @@ public class Usuario implements Serializable {
 	private String nom_usuario;
 	
 	@Column(nullable = false, length = 11)
-	private String cod_cpf;
+	private String cpf;
 	private String cod_telefone;
 	private String nom_email;
+	
+	@JsonIgnore
+	private String cod_senha;
 	private Integer perfil;
 
 	@ElementCollection(fetch = FetchType.EAGER)
@@ -46,13 +52,14 @@ public class Usuario implements Serializable {
 	public Usuario() {
 	}
 	
-	public Usuario(Integer id_usuario, String nom_usuario, String cod_cpf, String cod_telefone, String nom_email) {
+	public Usuario(Integer id_usuario, String nom_usuario, String cod_cpf, String cod_telefone, String nom_email, String cod_senha) {
 		super();
 		this.id_usuario = id_usuario;
 		this.nom_usuario = nom_usuario;
-		this.cod_cpf = cod_cpf;
+		this.cpf = cod_cpf;
 		this.cod_telefone = cod_telefone;
 		this.nom_email = nom_email;
+		this.cod_senha = cod_senha;
 	}
 
 	public Usuario(Integer id_usuario, String nom_usuario, String cod_cpf, String cod_telefone, 
@@ -60,15 +67,13 @@ public class Usuario implements Serializable {
 		super();
 		this.id_usuario = id_usuario;
 		this.nom_usuario = nom_usuario;
-		this.cod_cpf = cod_cpf;
+		this.cpf = cod_cpf;
 		this.cod_telefone = cod_telefone;
 		this.nom_email = nom_email;
 		this.perfil = per.getCod();
 		addPerfil(per);
 	}
 	
-	
-
 	public void addPerfil(Perfis perfis) {
 		this.perfis.add(perfis.getCod());
 	}
@@ -89,12 +94,12 @@ public class Usuario implements Serializable {
 		this.nom_usuario = nom_usuario;
 	}
 
-	public String getCod_cpf() {
-		return cod_cpf;
+	public String getCpf() {
+		return cpf;
 	}
 
-	public void setCod_cpf(String cod_cpf) {
-		this.cod_cpf = cod_cpf;
+	public void setCpf(String cod_cpf) {
+		this.cpf = cod_cpf;
 	}
 
 	public String getCod_telefone() {
@@ -114,8 +119,8 @@ public class Usuario implements Serializable {
 	}
 	
 	
-	public Perfis getPerfil() {
-		return Perfis.toEnum(perfil);
+	public Set<Perfis> getPerfil() {
+		return perfis.stream().map(x -> Perfis.toEnum(x)).collect(Collectors.toSet());
 	}
 
 	public void setPerfil(Perfis perfil) {
@@ -125,6 +130,14 @@ public class Usuario implements Serializable {
 	@Override
 	public int hashCode() {
 		return Objects.hash(id_usuario);
+	}
+	
+	public String getCod_senha() {
+		return cod_senha;
+	}
+
+	public void setCod_senha(String cod_senha) {
+		this.cod_senha = cod_senha;
 	}
 
 	@Override
